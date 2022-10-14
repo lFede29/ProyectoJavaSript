@@ -1,0 +1,32 @@
+[
+    {
+      "precio": 3500,
+      "id": 1,
+      "title": "Top griego"
+    },
+    {
+      "precio": 3200,
+      "id": 2,
+      "title": "Top Malibu"
+    },
+    {
+      "precio": 1000,
+      "id": 3,
+      "title": "Top multiuso"
+    },
+    {
+      "precio": 4500,
+      "id": 4,
+      "title": "Top Monica"
+    },
+    {
+      "precio": 1220,
+      "id": 5,
+      "title": "Top microtul"
+    },
+    {
+      "precio": 1500,
+      "id": 6,
+      "title": "Top un hombro"
+    }
+  ]
