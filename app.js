@@ -55,7 +55,7 @@ const setCarrito = item => {
         id: item.querySelector('button').dataset.id,
         cantidad: 1
     }
-    // console.log(producto)
+
     if (carrito.hasOwnProperty(producto.id)) {
         producto.cantidad = carrito[producto.id].cantidad + 1
     }
@@ -79,6 +79,9 @@ const pintarCarrito = () => {
         templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
 
         const clone = templateCarrito.cloneNode(true)
+        /* clone.querySelector('').addEventListener("click", () =>{
+            console.log("Diste click")
+        }) */
         fragment.appendChild(clone)
     })
     items.appendChild(fragment)
@@ -138,3 +141,17 @@ const btnAumentarDisminuir = e => {
     }
     e.stopPropagation()
 }
+
+const btnAlert = document.querySelector('btn')
+
+btnAlert.addEventListener("click", () => {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
+})
+
+
