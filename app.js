@@ -32,6 +32,17 @@ const pintarCards = data => {
         templateCard.querySelector('p').textContent = item.precio
         templateCard.querySelector('button').dataset.id = item.id
         const clone = templateCard.cloneNode(true)
+
+        clone.querySelector('button').addEventListener("click", () =>{
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Añadido al carrito',
+                showConfirmButton: false,
+                timer: 1000
+              })
+        })
+
         fragment.appendChild(clone)
     })
     cards.appendChild(fragment)
@@ -40,8 +51,6 @@ const pintarCards = data => {
 
 const addCarrito = e => {
     if (e.target.classList.contains('btn-dark')) {
-        // console.log(e.target.dataset.id)
-        // console.log(e.target.parentElement)
         setCarrito(e.target.parentElement)
     }
     e.stopPropagation()
@@ -79,9 +88,7 @@ const pintarCarrito = () => {
         templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
 
         const clone = templateCarrito.cloneNode(true)
-        /* clone.querySelector('').addEventListener("click", () =>{
-            console.log("Diste click")
-        }) */
+        
         fragment.appendChild(clone)
     })
     items.appendChild(fragment)
@@ -95,7 +102,7 @@ const pintarFooter = () => {
     
     if (Object.keys(carrito).length === 0) {
         footer.innerHTML = `
-        <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
+        <th scope="row" colspan="5">Carrito vacío</th>
         `
         return
     }
@@ -117,6 +124,22 @@ const pintarFooter = () => {
     boton.addEventListener('click', () => {
         carrito = {}
         pintarCarrito()
+        Swal.fire({
+            title: '¿Estas seguro de que quieres vaciar tu carrito?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, quiero eliminarlo!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Completado!',
+                'Tu carrito fue vaciado',
+                'success'
+              )
+            }
+          })
     })
 
 }
@@ -142,16 +165,7 @@ const btnAumentarDisminuir = e => {
     e.stopPropagation()
 }
 
-const btnAlert = document.querySelector('btn')
 
-btnAlert.addEventListener("click", () => {
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
-      })
-})
+
 
 
